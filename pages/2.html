@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lobster&family=Oooh+Baby&family=Pushster&family=Teko&family=Ubuntu:ital@1&family=Vujahday+Script&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles/names.css">
+    <link rel="stylesheet" href="../styles/main.css">
+
+    <title>Black Jack</title>
+</head>
+
+<body>
+    <div class="novi">
+        <br>
+        <div class="title">
+            <div style="display: inline-flex; justify-content: center; align-items: center;">
+                <img src="../assets/logo.png" alt="logo" width="175vh">
+                <h1>| Names</h1>
+            </div>
+            <h2 id="money">Balance :</h2>
+            <div class="log">
+                <button>Login</button>
+                <button>Register</button>
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <br>
+    <div class="main">
+        <div class="game">
+            <label for="name" class="l_name">Enter A name :</label>
+            <input type="text" name="name" id="name">
+            <button type="submit" id="addNameButton">Add Name</button>
+        </div>
+        <br><br><br>
+        <div class="scoreboard">
+            <table id="scoreboard">
+                <tr>
+                    <th>id</th>
+                    <th>Names</th>
+                    <th>Won ?</th>
+                </tr>
+
+            </table>
+        </div>
+        <div class="popup">
+            <h1 class="pop_title">
+                You Are too bore
+            </h1>
+            <div class="betting">
+                <button onclick="closeMore()" style="width: 30vh;height: 5vh;margin-bottom: 20px;font-size: 2rem;">Go Loan Money</button>
+            </div>
+        </div>
+    </div>
+    <footer id="footer">
+        <p id="footerContent">Footer content</p>
+    </footer>
+
+
+    <script src="../scripts/names.js">
+
+    </script>
+</body>
+
+</html>

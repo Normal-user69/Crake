@@ -1,0 +1,233 @@
+body {
+    background-color: #10242c;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.page-con {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    
+}
+
+.navi {
+    width: 19%;
+    height: 10vh;
+    background-color: #10242c;
+}
+
+.title {
+    width: 100%;
+    height: 10vh;
+    background-color: #1a2c38;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+.content {
+    margin-left: 15%;
+    flex: 1;
+}
+
+.btn {
+    background-color: #202c3c;
+    width: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Horizontally center the content */
+    border-bottom: 1px solid black; /* Add a 1px solid black bottom border */
+    padding-bottom: 5px; /* Optional: Add some padding below the text */
+    border-radius: 20px;
+}
+
+.btn:hover {
+    background-color: #304454;
+    cursor: pointer;
+}
+
+.top-navi {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 25px;
+    height: 9vh;
+
+}
+
+.bars {
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 5vh;
+    height: 4vh;
+}
+
+.novi{
+    display: flex;
+    align-items: center;
+}
+
+.post{
+    width: 80%;
+    height: 50%;
+    margin: auto;
+    margin-top: 10%;
+    border: 5px solid black;
+}
+
+
+
+.popup , .popup2{
+    background-color: whitesmoke;
+    border-radius: 30px;
+    width: 80vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    transition: transform 0.4s;
+    visibility: hidden;
+    color: black;
+}
+
+.pop_img{
+    width: 100px;
+    border-radius: 20%;
+    margin-top: -50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.open-popup{
+    transform: translate(-50%,-50%) scale(1);
+    visibility: visible;
+}
+
+.close-popup{
+    transform: translate(-50%,-50%) scale(0);
+    visibility: visible;
+}
+button{
+    font-size: 15px; /* Set the text size to be larger */
+    border-radius: 15px;
+}
+.betting {
+    font-size: 24px; /* Set the text size to be larger */
+    display: inline-block; /* Make the container inline */
+}
+
+label, input, button {
+    vertical-align: middle; /* Align the elements vertically */
+}
+
+input, button {
+    margin-left: 10px; /* Add some space between the elements */
+}
+
+input{
+    border-radius: 20px;
+}
+#games{
+    background-image: url("../assets/games.jpeg");
+}
+#sports{
+    background-image: url("../assets/sports.jpeg");
+}
+.games_btn {
+    position: relative;
+    width: 8vh;
+    height: 2vh;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensure the overlay color does not overflow */
+    background-image: url("../assets/games.jpeg");
+    background-size: cover;
+    background-position: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px; /* Add padding to create space for the text */
+}
+
+.games_btn:hover{
+    cursor: pointer;
+}
+
+.games_btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 92, 116, 0.5); /* Semi-transparent overlay color */
+    z-index: 1; /* Ensure the overlay is behind the text */
+}
+
+.games_btn p {
+    margin: 0; /* Remove default margin of the paragraph */
+    font-size: 1rem; /* Adjust font size as needed */
+    position: relative; /* Ensure the text is on top of the overlay */
+    z-index: 2; /* Make the text appear above the overlay */
+    color: white; /* Set text color to white */
+}
+
+/* Common styles for all screen sizes */
+body {
+    background-color: #10242c;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.page-con {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Styles for screens smaller than 600px (typical smartphones) */
+@media only screen and (max-width: 600px) {
+    .navi {
+        width: 100%;
+        height: auto;
+    }
+
+    .title {
+        height: auto;
+    }
+
+    .btn {
+        width: 80%;
+        margin-bottom: 5px;
+    }
+
+    .bars {
+        width: 4vh;
+        height: 4vh;
+    }
+
+    .games_btn {
+        width: 80%;
+        height: 4vh;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 5px;
+    }
+
+    .games_btn p {
+        font-size: 0.8rem;
+    }
+}
+@media screen and (max-width:740px){
+    html{
+        font-size: 40%;
+    }
+}
+@media screen and (max-width:420px){
+    html{
+        font-size: 30%;
+    }
+}

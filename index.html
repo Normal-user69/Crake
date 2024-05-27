@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crake</title>
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+
+<body>
+    <div class="page-con">
+        <div class="novi">
+            <div class="navi">
+                <div class="top-navi">
+                    <div style="display: flex; justify-content: center; align-items: center;">
+                    <img src="./assets/bars.png" alt="bars" class="bars">
+                    <div class="log">
+                        <div class="games_btn" id="games" onclick="goto(0)">
+                            <p>Games</p>
+                        </div>
+                        <div class="games_btn" id="sports">
+                            <p>Sports</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="btns">
+                    <div class="btn">
+                        <h3>Prmotions</h3>
+                    </div>
+                    <div class="btn">
+                        <h3>Blog</h3>
+                    </div>
+                    <div class="btn">
+                        <h3>Store</h3>
+                    </div>
+                    <div class="btn">
+                        <h3>about us</h3>
+                    </div>
+                    <div class="btn" onclick="freeMoney()">
+                        <h4>Loan 100$ For FREE!!</h4>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="title">
+                <img src="./assets/logo.png" alt="logo" width="175vh">
+                <h2 id="money">Balance :</h2>
+                <div class="log">
+                    <button>Login</button>
+                    <button>Register</button>
+                </div>
+            </div>
+            <br>
+        </div>
+        <div class="content">
+            <div class="popup">
+                <h1 class="pop_title">
+                    You Are too bore
+                </h1>
+                <div class="betting">
+                    <button onclick="closeMore(0)"
+                        style="width: 30vh;height: 5vh;margin-bottom: 20px;font-size: 2rem;">Go Loan Money</button>
+                </div>
+            </div>
+            <div class="post">
+                <img src="./assets/logo.png" alt="Welcome" width="100%">
+                <h1>Welcome To Crake</h1>
+                <h2>The First Non Profit casino site go play our games for FREE!!
+                </h2>
+                <h2></h2>
+                <h3>This site still in development</h3>
+                <button onclick="goto(1)">Goto Games</button>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        const moneyDisplay = document.getElementById('money');
+
+        function goto(op) {
+            window.location.href = "games.html";
+        }
+
+        if (!window.localStorage.money) {
+            window.localStorage.money = 100;
+        }
+        if (window.localStorage.getItem("money")) {
+            let money = parseFloat(window.localStorage.getItem("money"))
+            moneyDisplay.textContent = "Balance: " + money;
+        } else {
+            window.localStorage.money = 100;
+            let money = parseFloat(window.localStorage.getItem("money"))
+            moneyDisplay.textContent = "Balance: " + money;
+        }
+        let popup = document.querySelector(".popup");
+        function closeMore(op) {
+            window.localStorage.money = parseFloat(window.localStorage.money) + 100;
+            updateBalance();
+            popup.classList.remove("open-popup");
+        }
+
+        function freeMoney() {
+            popup.classList.add("open-popup");
+        }
+
+        function updateBalance() {
+            money = parseFloat(window.localStorage.getItem("money"))
+            moneyDisplay.textContent = "Balance: " + money;
+        }
+
+    </script>
+</body>
+
+</html>
