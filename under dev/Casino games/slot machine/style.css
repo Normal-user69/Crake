@@ -1,0 +1,88 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color:#444;
+}
+
+.icon {
+  width: 80px;
+  height: 100px;
+  
+  //animation: wiggle 0.4s linear infinite;
+}
+
+.slots {
+  width: 626px;
+  background-color: #333;
+  padding: 50px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -320px;
+  margin-top: -220px;
+}
+
+.window {
+  position: relative;
+  overflow: hidden;
+  height: 325px;
+  padding: 0 3px;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.outer-col {
+  width: 100px;
+  float: left;
+  margin: 0 2px;
+  background-color: #eee;
+}
+.col {
+  padding: 10px;
+  will-change: true;
+  
+}
+.slots.spinning .outer-col:nth-of-type(2) .col {
+  animation-delay: 0.1s;
+}
+
+.slots.spinning .outer-col:nth-of-type(3) .col  {
+  animation-delay: 0.2s;
+}
+
+.slots.spinning .outer-col:nth-of-type(4) .col {
+  animation-delay: 0.3s;
+}
+
+.slots.spinning .outer-col:nth-of-type(5) .col {
+  animation-delay: 0.4s;
+}
+
+.slots.spinning .outer-col:nth-of-type(6) .col {
+  animation-delay: 0.5s;
+}
+
+.slots.spinning .col {
+  animation: scroll 3s cubic-bezier(.5,0,.5,1) 1, blur 3s cubic-bezier(.5,0,.5,1) 1;
+}
+
+@keyframes scroll {
+  0% {transform: translate3d(0,0,0);}
+  90% {transform: translate3d(0,calc(-100% + 328px),0);}
+  100% {transform: translate3d(0,calc(-100% + 332px),0);}
+}
+@keyframes blur {
+  0% {filter: blur(0);}
+  10% {filter: blur(0);}
+  30% {filter: blur(6px);}
+  60% {filter: blur(6px);}
+  80% {filter: blur(0);}
+}
+
+@keyframes wiggle {
+  0% {transform: rotate(10deg);}
+  50% {transform: rotate(-10deg);}
+  100% {transform: rotate(10deg);}
+}
