@@ -1,0 +1,31 @@
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.box {
+    width: 120px;
+    height: 60px;
+    background-color: #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.box:hover {
+    background-color: #0056b3;
+}
+
+.disabled {
+    cursor: not-allowed;
+}
