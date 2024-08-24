@@ -1,6 +1,6 @@
 const gameContainer = document.getElementById('game-container');
 
-function createGrid(numRows, numCols) {
+function createGrid(numRows, numCols, numCorrect) {
     gameContainer.innerHTML = ''; // Clear existing grid
     let correctIndices = []; // Store correct box indices for each row
     let first = true; // Boolean variable to track the first iteration
@@ -10,16 +10,19 @@ function createGrid(numRows, numCols) {
         const row = document.createElement('div');
         row.classList.add('row');
 
-        const correctIndex = Math.floor(Math.random() * numCols);
-        correctIndices.push(correctIndex);
+        const correctIndicesForRow = new Set();
+        while (correctIndicesForRow.size < numCorrect) {
+            correctIndicesForRow.add(Math.floor(Math.random() * numCols));
+        }
+        correctIndices.push([...correctIndicesForRow]);
 
         for (let i = 0; i < numCols; i++) {
             const box = document.createElement('div');
             box.classList.add('box');
             box.textContent = i + 1;
 
-            if (i === correctIndex) {
-                box.classList.add('correct'); // Add a special class for the correct box
+            if (correctIndicesForRow.has(i)) {
+                box.classList.add('correct'); // Add a special class for the correct boxes
             }
 
             box.addEventListener('click', () => {
@@ -27,18 +30,27 @@ function createGrid(numRows, numCols) {
                     return; // Prevent clicks on rows that are not active
                 }
 
-                if (i === correctIndex) {
-                    alert('Correct! Moving to previous row.');
+                if (correctIndicesForRow.has(i)) {
+                    alert('Correct! Moving to the previous row.');
                     row.classList.add('disabled'); // Disable the current row
+                    row.querySelectorAll('.box').forEach(box => box.style.backgroundColor = 'gray'); // Gray out entire row
+                    box.style.backgroundColor = '#007bff'; // Highlight correct button with the specified blue color
+
                     if (rowIndex - 1 >= 0) {
                         currentRow = rowIndex - 1; // Move to the previous row
                         enableRow(currentRow); // Enable the previous row
                     } else {
                         alert('Congratulations! You won the game.');
+                        showRestartButton(); // Show restart button after winning
+                        highlightEndGame(); // Highlight correct and wrong buttons at the end
                     }
                 } else {
-                    alert('Wrong box! Restarting the game.');
-                    restartGame(); // Restart the game on wrong selection
+                    alert('Wrong box!');
+                    showAllRows(); // Reset all rows to default colors
+                    box.style.backgroundColor = 'red'; // Highlight wrong button
+                    showCorrectButtonsInAllRows(); // Show correct buttons in all rows
+                    turnWrongButtonsGray(); // Turn wrong buttons gray
+                    showRestartButton(); // Show restart button on wrong selection
                 }
             });
 
@@ -70,9 +82,74 @@ function createGrid(numRows, numCols) {
         });
     }
 
+    function disableAllButtons() {
+        const boxes = document.querySelectorAll('.box');
+        boxes.forEach(box => {
+            box.style.pointerEvents = 'none'; // Disable all buttons
+        });
+    }
+
+    function showAllRows() {
+        const rows = document.querySelectorAll('.row');
+        rows.forEach(row => {
+            row.querySelectorAll('.box').forEach(box => {
+                if (box.classList.contains('correct')) {
+                    box.style.backgroundColor = '#007bff'; // Highlight correct buttons with the specified blue color
+                } else {
+                    box.style.backgroundColor = 'gray'; // Turn wrong buttons gray
+                }
+            });
+        });
+    }
+
+    function showCorrectButtonsInAllRows() {
+        const rows = document.querySelectorAll('.row');
+        rows.forEach(row => {
+            row.querySelectorAll('.box').forEach(box => {
+                if (box.classList.contains('correct')) {
+                    box.style.backgroundColor = '#007bff'; // Highlight correct buttons with the specified blue color
+                }
+            });
+        });
+    }
+
+    function turnWrongButtonsGray() {
+        const boxes = document.querySelectorAll('.box');
+        boxes.forEach(box => {
+            if (!box.classList.contains('correct')) {
+                box.style.backgroundColor = 'gray'; // Turn wrong buttons gray
+            }
+        });
+    }
+
+    function highlightEndGame() {
+        correctIndices.forEach((indices, rowIndex) => {
+            const row = gameContainer.children[rowIndex];
+            row.querySelectorAll('.box').forEach((box, boxIndex) => {
+                if (indices.includes(boxIndex)) {
+                    box.style.backgroundColor = '#007bff'; // Highlight correct buttons with the specified blue color
+                } else {
+                    box.style.backgroundColor = 'gray'; // Gray out incorrect buttons
+                }
+            });
+        });
+        disableAllButtons(); // Disable all buttons at the end of the game
+    }
+
+    function showRestartButton() {
+        const restartButton = document.createElement('button');
+        restartButton.textContent = 'Restart Game';
+        restartButton.classList.add('restart-button');
+        restartButton.addEventListener('click', () => {
+            restartGame(); // Restart the game when button is clicked
+        });
+        gameContainer.appendChild(restartButton);
+        disableAllButtons(); // Disable all buttons when restart button is shown
+    }
+
     function restartGame() {
-        disableAllRows(); // Disable all rows
-        createGrid(numRows, numCols); // Recreate the grid
+        gameContainer.innerHTML = ''; // Clear the game container
+        createGrid(numRows, numCols, numCorrect); // Recreate the grid
     }
 
     // Initialize grid
@@ -87,4 +164,5 @@ function createGrid(numRows, numCols) {
 // Start the game with user input
 const numRows = parseInt(prompt('Enter the number of rows:', '2'));
 const numCols = parseInt(prompt('Enter the number of columns:', '4'));
-createGrid(numRows, numCols);
+const numCorrect = parseInt(prompt('Enter the number of correct boxes per row:', '1'));
+createGrid(numRows, numCols, numCorrect);
